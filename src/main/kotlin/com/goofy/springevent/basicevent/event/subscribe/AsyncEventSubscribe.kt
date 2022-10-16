@@ -1,16 +1,18 @@
 package com.goofy.springevent.basicevent.event.subscribe
 
-import com.goofy.springevent.basicevent.event.model.AnnotationEventModel
+import com.goofy.springevent.basicevent.event.model.AsyncEventModel
 import mu.KotlinLogging
 import org.springframework.context.event.EventListener
+import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Component
 
 @Component
-class AnnotationEventSubscribe {
+class AsyncEventSubscribe {
     private val logger = KotlinLogging.logger {}
 
-    @EventListener(AnnotationEventModel::class)
-    fun subscribe(event: AnnotationEventModel) {
+    @Async
+    @EventListener
+    fun subscribe(event: AsyncEventModel) {
         logger.info { "event -> ${event.message}" }
     }
 }

@@ -1,6 +1,7 @@
 package com.goofy.springevent.basicevent.service
 
 import com.goofy.springevent.basicevent.event.publish.AnnotationEventPublish
+import com.goofy.springevent.basicevent.event.publish.AsyncEventPublish
 import com.goofy.springevent.basicevent.event.publish.BasicEventPublish
 import com.goofy.springevent.basicevent.event.publish.GenericEventPublish
 import org.springframework.stereotype.Service
@@ -9,7 +10,8 @@ import org.springframework.stereotype.Service
 class EventService(
     private val basicEventPublish: BasicEventPublish,
     private val annotationEventPublish: AnnotationEventPublish,
-    private val genericEventPublish: GenericEventPublish<String>
+    private val genericEventPublish: GenericEventPublish<String>,
+    private val asyncEventPublish: AsyncEventPublish
 ) {
     fun defaultEvent(): String {
         val message = "Hello World~!"
@@ -31,6 +33,14 @@ class EventService(
         val message = "Yes Hello World~!@!!"
 
         genericEventPublish.publish(message)
+
+        return message
+    }
+
+    fun asyncEvent(): String {
+        val message = "비동기로 이벤트 처리"
+
+        asyncEventPublish.publish(message)
 
         return message
     }

@@ -19,4 +19,7 @@ class EventController(
     // TODO : subscribe가 제대로 작동하지 않음 <- 변경 필요
     @GetMapping("/generic-event")
     fun genericEvent() = eventService.genericEvent()
+
+    @GetMapping("/async-event")
+    fun asyncEvent() = eventService.asyncEvent()
 }
